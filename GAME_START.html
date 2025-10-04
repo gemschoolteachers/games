@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	body {
+  		background-color: linen;
+  		margin-left: auto;
+  		margin-right: auto;
+  		font-family:tahoma;
+	}
+	td {
+		border: 3px linen solid;
+		font-size:20px; 
+		padding:20px;"
+	}
+	table {
+		margin-left:auto;
+		margin-right:auto;
+		background-color:white;
+	}
+	label {
+		padding:10px;
+	}
+	.selector {
+		width:160px;
+		padding:10px;
+		margin-bottom:10px;
+	}
+	.selector2 {
+		width:110px;
+		padding:10px;
+		margin-bottom:10px;
+	}
+	.hdr {
+		font-size:20px; 
+		padding:10px 0px 10px 0px;
+		font-weight:bold;
+	}
+	input {
+		font-size: 20px;
+		background-color: #F4F4F4;
+		padding:5px;
+	}
+	.boxen {
+		margin-top:15px;
+	}
+
+</style>
+
+<script>
+
+	var thegame = "";
+
+	// for the window size
+	var thePageWidthYo = window.innerWidth;
+	var thePageHeightYo = window.innerHeight;
+
+	function pickGame(selectedgame) {
+		// @@@@@@@ ADD STUFF HERE WHEN THERE ARE MORE GAMES (2 places)@@@@@@@@@@@@@@@@@@@@@
+
+		document.getElementById("btnLookForIt").style.border = "8px solid white";
+		document.getElementById("btnTimeGame").style.border = "8px solid white";
+		document.getElementById("btnClockGame").style.border = "8px solid white";
+		document.getElementById("btnRestaurantGame").style.border = "8px solid white";
+		document.getElementById("btnABCItems").style.border = "8px solid white";
+		document.getElementById("btnScavenger").style.border = "8px solid white";
+		document.getElementById("btnClues").style.border = "8px solid white";
+		document.getElementById("btnZoomed").style.border = "8px solid white";
+
+		if(selectedgame == "lookForIt") {
+			thegame = "lookforit";
+			document.getElementById("btnLookForIt").style.border = "8px solid yellow";
+		}
+		else if(selectedgame == "timeGame") {
+			thegame = "timegame";
+			document.getElementById("btnTimeGame").style.border = "8px solid yellow";
+		}
+		else if(selectedgame == "clockGame") {
+			thegame = "clockgame";
+			document.getElementById("btnClockGame").style.border = "8px solid yellow";
+		}
+		else if(selectedgame == "restaurantGame") {
+			thegame = "restaurantgame";
+			document.getElementById("btnRestaurantGame").style.border = "8px solid yellow";
+		}
+		else if(selectedgame == "abcitems") {
+			thegame = "abcitems";
+			document.getElementById("btnABCItems").style.border = "8px solid yellow";
+		}
+		else if(selectedgame == "scavenger") {
+			thegame = "scavenger";
+			document.getElementById("btnScavenger").style.border = "8px solid yellow";
+		}
+		else if(selectedgame == "clues") {
+			thegame = "clues";
+			document.getElementById("btnClues").style.border = "8px solid yellow";
+		}
+		else if(selectedgame == "zoomed") {
+			thegame = "zoomed";
+			document.getElementById("btnZoomed").style.border = "8px solid yellow";
+		}
+
+		document.getElementById("goBtn").style.color = "white";
+		document.getElementById("goBtn").style.backgroundColor = "green";
+		document.getElementById("errormsglbl").innerHTML = "";
+	}
+
+	function letsGo() {
+		if(thegame == "") {
+			document.getElementById("errormsglbl").innerHTML = "Please select a game!";
+		}
+		else {
+			var n = 1;					// get names
+			var boxstuff = "";
+			thenames = "";
+
+			for (n = 1; n < 11; n++) {
+				boxstuff = document.getElementById("name" + n).value.trim();
+				if (boxstuff != "") {
+					thenames += "_" + boxstuff;
+				}
+			}
+			if(thenames == "") {
+				thenames = "_Team A_Team B"
+			}
+			thenames = thenames.replace(/ /g, "%%");
+
+		// @@@@@@@ ADD STUFF HERE WHEN THERE ARE MORE GAMES @@@@@@@@@@@@@@@@@@@@@
+			if(thegame == "lookforit") {
+				window.location.href = "GameFiles/LOOK_FOR_IT.html" + "?" + thenames;
+			}
+			else if(thegame == "timegame") {
+				window.location.href = "GameFiles/TIME_GAME.html" + "?" + thenames;
+			}
+			else if(thegame == "clockgame") {
+				window.location.href = "GameFiles/CLOCK_GAME.html" + "?" + thenames;
+			}
+			else if(thegame == "restaurantgame") {
+				window.location.href = "GameFiles/RESTAURANT_GAME.html" + "?" + thenames;
+			}
+			else if(thegame == "abcitems") {
+				window.location.href = "GameFiles/ABC_ITEMS.html" + "?" + thenames;
+			}
+			else if(thegame == "scavenger") {
+				window.location.href = "GameFiles/SCAVENGER.html" + "?" + thenames;
+			}
+			else if(thegame == "clues") {
+				window.location.href = "GameFiles/CLUES_GAME.html" + "?" + thenames;
+			}
+			else if(thegame == "zoomed") {
+				window.location.href = "GameFiles/ZOOMED_IN.html" + "?" + thenames;
+			}
+		}
+	}
+
+
+
+</script>
+</head>
+
+
+<body>
+<div id="bodydiv">
+
+<div id="headerthingy">
+<table><tr><td style="background-color:white;">
+	<img src="GameFiles/pics/GEM_PIC1.png" style="height:150px;" />
+</td><td>
+	<img src="GameFiles/pics/GEMLOGO.jpg" style="height:200px;" />
+</td><td>
+	<img src="GameFiles/pics/GEM_PIC2.png" style="height:150px;" />
+</td></tr></table>
+</div>
+
+<br /><br />
+
+
+<div id="selectstuffplace">
+<table><tr><td valign="top">
+	<div class="hdr" align="center">Select a game:<hr /></div>
+
+	<button id="btnLookForIt" onclick="pickGame('lookForIt')" style="font-size:30px;padding:20px;color:white;background-color:red;text-shadow:3px 3px 2px black;border:8px solid white;text-align:center;width:220px;">Look For It!</button> <br />
+	<button id="btnTimeGame" onclick="pickGame('timeGame')" style="font-size:30px;padding:5px;color:white;background-color:blue;text-shadow:3px 3px 2px black;border:8px solid white;text-align:center;width:220px;">Speed Vocabulary</button> <br />
+	<button id="btnClockGame" onclick="pickGame('clockGame')" style="font-size:30px;padding:20px 15px 20px 15px;color:white;background-color:green;text-shadow:3px 3px 2px black;border:8px solid white;text-align:center;width:220px;">Clock Game</button> <br />
+	<button id="btnRestaurantGame" onclick="pickGame('restaurantGame')" style="font-size:30px;padding:5px;color:white;background-color:darkorange;text-shadow:3px 3px 2px black;border:8px solid white;text-align:center;width:220px;">Restaurant Game</button> <br />
+	<button id="btnABCItems" onclick="pickGame('abcitems')" style="font-size:30px;padding:5px 10px 5px 10px;color:white;background-color:mediumpurple;text-shadow:3px 3px 2px black;border:8px solid white;text-align:center;width:220px;">ABC Item Sort</button><br />
+	<button id="btnScavenger" onclick="pickGame('scavenger')" style="font-size:30px;padding:5px;color:white;background-color:turquoise;text-shadow:3px 3px 2px black;border:8px solid white;text-align:center;width:220px;">Scavenger Hunt</button><br />
+	<button id="btnClues" onclick="pickGame('clues')" style="font-size:30px;padding:20px 15px 20px 15px;color:white;background-color:peru;text-shadow:3px 3px 2px black;border:8px solid white;text-align:center;width:220px;">Clues Game</button> <br />
+	<button id="btnZoomed" onclick="pickGame('zoomed')" style="font-size:30px;padding:20px 15px 20px 15px;color:white;background-color:lightcoral;text-shadow:3px 3px 2px black;border:8px solid white;text-align:center;width:220px;">Zoomed In</button> <br />
+
+	<!--  @@@@@@@ ADD STUFF ABOVE HERE WHEN THERE ARE MORE GAMES @@@@@@@@@@@@@@@@@@@@@ -->
+
+</td><td valign="top" align="center">
+	<div class="hdr" align="center">Enter names of students/teams:<hr /></div>
+	<div style="width:400px;text-align:center;font-style:italic;font-size:15px;">Use as many/few boxes as you need. <br /><br />
+	In a hurry? Skip this step and the names will default to Team A/Team B.<br /><br /></div>
+
+	<div class="boxen"><input id="name1" /></div>
+	<div class="boxen"><input id="name2" /></div>
+	<div class="boxen"><input id="name3" /></div>
+	<div class="boxen"><input id="name4" /></div>
+	<div class="boxen"><input id="name5" /></div>
+	<div class="boxen"><input id="name6" /></div>
+	<div class="boxen"><input id="name7" /></div>
+	<div class="boxen"><input id="name8" /></div>
+	<div class="boxen"><input id="name9" /></div>
+	<div class="boxen"><input id="name10" /></div>
+
+	<br /><br />
+	<div style="width:400px;text-align:center;font-style:italic;font-size:15px;">Names are not needed for the Scavenger Hunt, Clues Game, or Zoomed In.</div>
+
+</td><td valign="top" align="center">
+	<div class="hdr" align="center">Ready?<hr /></div>
+	<button id="goBtn" onclick="letsGo()" style="font-size:50px;padding:20px;font-weight:bold;color:lightgray;background-color:gray;text-align:center;">GO</button><br />
+	<div id="errormsglbl" style="margin-top:20px;color:red;font-weight:bold;width:150px;"></div>
+
+
+</td></tr></table>
+
+<script>
+	// for window size!
+	/*var thewidthpercentage = ((thePageWidthYo / 1675) + ((1675 - thePageWidthYo) / (1675 * 3)));
+	thewidthpercentage = thewidthpercentage * 100;
+	//document.getElementsByTagName("body")[0].style.scale = thewidthpercentage + "%";
+	document.getElementById("bodydiv").style.scale = thewidthpercentage + "%";*/
+</script>
+
+</div>
+</body>
+</html> 
